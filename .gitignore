@@ -1,0 +1,31 @@
+# python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# datasets & downloads
+data/
+*.tgz
+*.tar.gz
+*.zip
+
+# model checkpoints & outputs
+*.pt
+*.pth
+*.ckpt
+runs/
+experiments/
+*.png
+
+# environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# ide & os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
