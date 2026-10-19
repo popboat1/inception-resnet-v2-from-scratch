@@ -38,6 +38,10 @@ def benchmark(
     with torch.no_grad():
         macs, params = thop.profile(model_profile, inputs=(x_single,), verbose=False)
     del model_profile
+    import gc
+    gc.collect()
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
 
     gmac = macs / 1e9
     params_m = params / 1e6
