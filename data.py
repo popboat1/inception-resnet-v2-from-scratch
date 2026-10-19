@@ -19,12 +19,14 @@ def get_imagenette_loaders(
     norm_mean=(0.485, 0.456, 0.406),
     norm_std=(0.229, 0.224, 0.225),
     download=True,
-    seed=None
+    seed=0
 ):
     if transforms is None or Imagenette is None:
         raise ImportError("torchvision is required for get_imagenette_loaders(). Please install it via 'pip install torchvision'.")
     if seed is not None:
         torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
 
     crop_size = input_size[0] if isinstance(input_size, (tuple, list)) else input_size
 

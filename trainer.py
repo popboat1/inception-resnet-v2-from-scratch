@@ -134,12 +134,14 @@ def train(
     device="cuda",
     use_amp=True,
     amp_dtype=torch.bfloat16,
-    seed=None,
+    seed=0,
     model_name=None,
     plot_curves=True
 ):
     if seed is not None:
         torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
 
     name = model_name or model.__class__.__name__
     device = torch.device(device if torch.cuda.is_available() else "cpu")
