@@ -94,7 +94,7 @@ def evaluate(
     return avg_loss, acc
 
 
-def plot_training_curves(history, save_path=None, title_prefix=""):
+def plot_training_curves(history, title_prefix=""):
     epochs_range = range(1, len(history["train_loss"]) + 1)
     prefix = f"{title_prefix} " if title_prefix else ""
 
@@ -119,8 +119,6 @@ def plot_training_curves(history, save_path=None, title_prefix=""):
     plt.legend(fontsize=11)
 
     plt.tight_layout()
-    if save_path:
-        plt.savefig(save_path, dpi=300)
     plt.show()
 
 
@@ -138,8 +136,7 @@ def train(
     amp_dtype=torch.bfloat16,
     seed=None,
     model_name=None,
-    plot_curves=True,
-    save_plot_path=None
+    plot_curves=True
 ):
     if seed is not None:
         torch.manual_seed(seed)
@@ -208,6 +205,6 @@ def train(
     print("\nTraining Finished!")
 
     if plot_curves:
-        plot_training_curves(history, save_path=save_plot_path, title_prefix=name)
+        plot_training_curves(history, title_prefix=name)
 
     return history

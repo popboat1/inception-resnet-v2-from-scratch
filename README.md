@@ -49,7 +49,6 @@ history = train(
     val_loader, 
     epochs=30, 
     lr=0.01, 
-    device="cuda",
-    save_plot_path="se_curves.png"
+    device="cuda"
 )
 ```
